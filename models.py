@@ -34,3 +34,19 @@ class DataPoint:
 
     def __str__(self):
         return f'DataPoint: {self.time} load:{self.loadPower}'
+
+
+class Snapshot:
+    solarGenerationWatts = 0.0
+    gridPowerWatts = 0.0
+    currentLoadWatts = 0.0
+
+    def __init__(self, solar_generation_watts: float, grid_power_watts: float, current_load_watts: float):
+        self.solarGenerationWatts = solar_generation_watts
+        self.gridPowerWatts = grid_power_watts
+        self.currentLoadWatts = current_load_watts
+
+    def __str__(self):
+        return f'Snapshot: generating:{self.solarGenerationWatts} ' \
+               f'using:{self.currentLoadWatts} ' \
+               f'grid:{self.gridPowerWatts}'

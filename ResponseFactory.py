@@ -1,6 +1,6 @@
 import datetime
 
-from models import TodaySummary, DataPoint
+from models import TodaySummary, DataPoint, Snapshot
 
 
 class ResponseFactory:
@@ -16,10 +16,20 @@ class ResponseFactory:
             return None
 
     @staticmethod
+    def parse_snapshot(json: dict):
+        if json is not None:
+            return Snapshot(float(json['pvPower']),
+                            float(json['gridPower']),
+                            float(json['loadPower']))
+        else:
+            return None
+
+    @staticmethod
     def inverter_day_multi_line(json: dict):
         if json is not None:
             data = json['data']
             if data is not None:
-                return map(lambda x: DataPoint(x['loadPower'], x['hour'], x['minute'], datetime.datetime.fromisoformat(x['time'])), data)
+                return map(lambda x: DataPoint(x['loadPower'], x['hour'], x['minute'],
+                                               datetime.datetime.fromisoformat(x['time'])), data)
         else:
             return None

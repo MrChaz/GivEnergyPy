@@ -39,6 +39,14 @@ class GivEnergyApi:
 
         return result
 
+    def snapshot(self):
+        result = None
+        if self.session is not None and self.authenticated:
+            json = self.request_json(GivEnergyApi.API_PLANT_SUMMARY)
+            result = ResponseFactory.parse_snapshot(json)
+
+        return result
+
     def inverter_day_multi_line(self, day: datetime.date):
         result = None
         if self.session is not None and self.authenticated:

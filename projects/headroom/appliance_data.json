@@ -1,0 +1,8 @@
+{
+  "washing_machine": {
+    "averageConsumptionWatts": 134
+  },
+  "dish_washer": {
+    "averageConsumptionWatts": 999
+  }
+}
